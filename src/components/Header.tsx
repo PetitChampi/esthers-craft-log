@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid3X3, List } from 'lucide-react';
-import Tabs from './Tabs';
+import Tabs from '@/components/Tabs';
 
 interface HeaderProps {
   activeCategory: string;

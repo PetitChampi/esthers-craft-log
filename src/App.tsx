@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import Layout from './components/Layout';
-import Header from './components/Header';
-import PictureGrid, { mockCraftItems, CraftItem } from './components/PictureGrid';
-import Modal from './components/Modal';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import PictureGrid, { mockCraftItems, CraftItem } from '@/components/PictureGrid';
+import Modal from '@/components/Modal';
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');

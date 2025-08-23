@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import { CraftItem } from './PictureGrid';
+import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
+import { CraftItem } from '@/components/PictureGrid';
 
 interface ModalProps {
   isOpen: boolean;
