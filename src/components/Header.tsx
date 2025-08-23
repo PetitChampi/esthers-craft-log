@@ -1,12 +1,12 @@
-import React from 'react';
 import { Grid3X3, List } from 'lucide-react';
 import Tabs from '@/components/Tabs';
+import { ViewMode, Category, ViewModeTab, CategoryTab } from '@/types';
 
 interface HeaderProps {
-  activeCategory: string;
-  onCategoryChange: (category: string) => void;
-  viewMode: 'grid' | 'list';
-  onViewModeChange: (mode: 'grid' | 'list') => void;
+  activeCategory: Category;
+  onCategoryChange: (category: Category) => void;
+  viewMode: ViewMode;
+  onViewModeChange: (mode: ViewMode) => void;
 }
 
 export default function Header({ 
@@ -15,13 +15,13 @@ export default function Header({
   viewMode, 
   onViewModeChange 
 }: HeaderProps) {
-  const categoryTabs = [
+  const categoryTabs: CategoryTab[] = [
     { id: 'all', label: 'All' },
     { id: 'knitting', label: 'Knitting' },
     { id: 'crochet', label: 'Crochet' }
   ];
 
-  const viewTabs = [
+  const viewTabs: ViewModeTab[] = [
     { id: 'grid', icon: <Grid3X3 className="w-5 h-5" /> },
     { id: 'list', icon: <List className="w-5 h-5" /> }
   ];

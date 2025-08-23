@@ -1,30 +1,23 @@
-import React from 'react';
 import { cn } from '@/components/ui/utils';
+import { TabItem } from '@/types';
 
-interface TabItem {
-  id: string;
-  label?: string;
-  icon?: React.ReactNode;
-  content?: React.ReactNode;
-}
-
-interface TabsProps {
-  tabs: TabItem[];
-  activeTab: string;
-  onTabChange: (tabId: string) => void;
+interface TabsProps<T extends string = string> {
+  tabs: TabItem<T>[];
+  activeTab: T;
+  onTabChange: (tabId: T) => void;
   variant?: 'text' | 'icon';
   className?: string;
   centered?: boolean;
 }
 
-export default function Tabs({ 
+export default function Tabs<T extends string = string>({ 
   tabs, 
   activeTab, 
   onTabChange, 
   variant = 'text',
   className,
   centered = false
-}: TabsProps) {
+}: TabsProps<T>) {
   return (
     <div className={cn("w-full", className)}>
       <div className={cn(

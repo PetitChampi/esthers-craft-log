@@ -1,12 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import Layout from '@/components/Layout';
 import Header from '@/components/Header';
 import PictureGrid, { mockCraftItems, CraftItem } from '@/components/PictureGrid';
 import Modal from '@/components/Modal';
+import { ViewMode, Category } from '@/types';
 
 export default function App() {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [selectedItem, setSelectedItem] = useState<CraftItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

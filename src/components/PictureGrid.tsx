@@ -1,10 +1,10 @@
-import React from 'react';
 import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
+import { ViewMode, Category } from '@/types';
 
 export interface CraftItem {
   id: string;
   title: string;
-  category: 'knitting' | 'crochet';
+  category: Category;
   imageUrl: string;
   description: string;
   images: string[];
@@ -12,7 +12,7 @@ export interface CraftItem {
 
 interface PictureGridProps {
   items: CraftItem[];
-  viewMode: 'grid' | 'list';
+  viewMode: ViewMode;
   onItemClick: (item: CraftItem) => void;
 }
 
