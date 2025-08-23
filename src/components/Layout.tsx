@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import "@/styles/Layout.css";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -6,26 +7,26 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-100">
-      <header className="py-6 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-neutral-800 text-center font-semibold">
+    <div className="layout-container">
+      <header className="layout-header">
+        <div className="layout-header-content">
+          <h1 className="layout-title">
             Esther's craft log
           </h1>
         </div>
       </header>
       
-      <main className="flex-1 px-4">
-        <div className="max-w-6xl mx-auto">
+      <main className="layout-main">
+        <div className="layout-main-content">
           {children}
         </div>
       </main>
       
-      <footer className="py-6 px-4 mt-12">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-center text-neutral-600">
-            Crafts & web design by{' '}
-            <span className="text-primary-800 font-medium">
+      <footer className="layout-footer">
+        <div className="layout-footer-content">
+          <p className="layout-footer-text">
+            Crafts & web design by{" "}
+            <span className="layout-footer-highlight">
               Esther Haddon
             </span>
           </p>

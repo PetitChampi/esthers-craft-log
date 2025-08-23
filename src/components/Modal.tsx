@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
-import { CraftItem } from '@/components/PictureGrid';
+import { useEffect } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
+import { CraftItem } from "@/components/PictureGrid";
+import "@/styles/Modal.css";
 
 interface ModalProps {
   isOpen: boolean;
@@ -27,80 +28,80 @@ export default function Modal({
       if (!isOpen) return;
       
       switch (e.key) {
-        case 'Escape':
+        case "Escape":
           onClose();
           break;
-        case 'ArrowLeft':
+        case "ArrowLeft":
           onPrevious();
           break;
-        case 'ArrowRight':
+        case "ArrowRight":
           onNext();
           break;
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose, onPrevious, onNext]);
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
   if (!isOpen || !item) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-      <div className="relative w-full h-full max-w-4xl max-h-full p-4 flex flex-col">
+    <div className="modal-overlay">
+      <div className="modal-container">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="text-white">
-            <span className="text-sm opacity-75">
+        <div className="modal-header">
+          <div className="modal-counter">
+            <span className="modal-counter-text">
               {currentIndex + 1} of {totalItems}
             </span>
           </div>
           <button
             onClick={onClose}
-            className="text-white hover:text-neutral-300 transition-colors p-2"
+            className="modal-close-button"
           >
-            <X className="w-6 h-6" />
+            <X className="modal-close-icon" />
           </button>
         </div>
 
         {/* Main content */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="modal-content">
           {/* Previous button */}
           <button
             onClick={onPrevious}
-            className="text-white hover:text-neutral-300 transition-colors p-4 mr-4"
+            className="modal-nav-button previous"
             disabled={totalItems <= 1}
           >
-            <ChevronLeft className="w-8 h-8" />
+            <ChevronLeft className="modal-nav-icon" />
           </button>
 
           {/* Image container */}
-          <div className="flex-1 flex flex-col items-center max-w-2xl">
-            <div className="w-full aspect-square max-h-[70vh] mb-4">
+          <div className="modal-image-container">
+            <div className="modal-image-wrapper">
               <ImageWithFallback
                 src={item.imageUrl}
                 alt={item.title}
-                className="w-full h-full object-contain rounded-lg"
+                className="modal-image"
               />
             </div>
             
             {/* Item details */}
-            <div className="text-center text-white max-w-md">
-              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
-              <p className="text-neutral-300 mb-3">{item.description}</p>
-              <span className="inline-block px-3 py-1 bg-primary-800 text-white rounded-full text-sm font-medium capitalize">
+            <div className="modal-details">
+              <h2 className="modal-title">{item.title}</h2>
+              <p className="modal-description">{item.description}</p>
+              <span className="modal-category">
                 {item.category}
               </span>
             </div>
@@ -109,10 +110,10 @@ export default function Modal({
           {/* Next button */}
           <button
             onClick={onNext}
-            className="text-white hover:text-neutral-300 transition-colors p-4 ml-4"
+            className="modal-nav-button next"
             disabled={totalItems <= 1}
           >
-            <ChevronRight className="w-8 h-8" />
+            <ChevronRight className="modal-nav-icon" />
           </button>
         </div>
       </div>

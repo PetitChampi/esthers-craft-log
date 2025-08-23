@@ -1,11 +1,12 @@
-import { cn } from '@/components/ui/utils';
-import { TabItem } from '@/types';
+import { cn } from "@/components/ui/utils";
+import { TabItem } from "@/types";
+import "@/styles/Tabs.css";
 
 interface TabsProps<T extends string = string> {
   tabs: TabItem<T>[];
   activeTab: T;
   onTabChange: (tabId: T) => void;
-  variant?: 'text' | 'icon';
+  variant?: "text" | "icon";
   className?: string;
   centered?: boolean;
 }
@@ -14,30 +15,27 @@ export default function Tabs<T extends string = string>({
   tabs, 
   activeTab, 
   onTabChange, 
-  variant = 'text',
+  variant = "text",
   className,
   centered = false
 }: TabsProps<T>) {
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("tabs-container", className)}>
       <div className={cn(
-        "flex gap-1 p-1 bg-neutral-200 rounded-lg w-fit",
-        centered && "mx-auto"
+        "tabs-wrapper",
+        centered && "centered"
       )}>
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
             className={cn(
-              "px-4 py-2 rounded-md transition-all duration-200 font-medium",
-              "hover:bg-white/50",
-              activeTab === tab.id
-                ? "bg-primary-800 text-white shadow-sm"
-                : "text-neutral-700 hover:text-neutral-900"
+              "tab-button",
+              activeTab === tab.id ? "active" : "inactive"
             )}
           >
-            {variant === 'icon' ? (
-              <div className="flex items-center justify-center">
+            {variant === "icon" ? (
+              <div className="tab-icon">
                 {tab.icon}
               </div>
             ) : (

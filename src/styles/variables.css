@@ -1,79 +1,26 @@
 :root {
-  /* Primary palette (red/burgundy shades) - from darkest to lightest */
-  --color-primary-1: #7a2946; /* Darkest burgundy */
-  --color-primary-2: #a4364f; /* Dark burgundy */
-  --color-primary-3: #d84a6e; /* Medium burgundy/pink */
-  --color-primary-4: #e394a8; /* Light pink */
-  --color-primary-5: #f0c8d0; /* Lightest pink */
-  
-  /* Secondary palette (yellow/brown shades) - from darkest to lightest */
-  --color-secondary-1: #8b5a2b; /* Darkest brown */
-  --color-secondary-2: #a67c52; /* Dark brown */
-  --color-secondary-3: #d49c5a; /* Medium orange/yellow */
-  --color-secondary-4: #e6c794; /* Light yellow */
-  --color-secondary-5: #f5e8d3; /* Lightest cream */
-  
-  /* Legacy color names for backward compatibility */
-  --color-primary-900: var(--color-primary-1);
-  --color-primary-800: var(--color-primary-2);
-  --color-primary-700: var(--color-primary-3);
-  --color-primary-600: var(--color-primary-4);
-  --color-primary-500: var(--color-primary-5);
-  
-  --color-secondary-900: var(--color-secondary-1);
-  --color-secondary-800: var(--color-secondary-2);
-  --color-secondary-700: var(--color-secondary-3);
-  --color-secondary-600: var(--color-secondary-4);
-  --color-secondary-500: var(--color-secondary-5);
-  
-  /* Neutral colors */
-  --color-neutral-100: #f8f9fa;
-  --color-neutral-200: #e9ecef;
-  --color-neutral-300: #dee2e6;
-  --color-neutral-400: #ced4da;
-  --color-neutral-500: #adb5bd;
-  --color-neutral-600: #6c757d;
-  --color-neutral-700: #495057;
-  --color-neutral-800: #343a40;
-  --color-neutral-900: #212529;
-}
-
-@theme {
   /* Primary palette */
-  --color-primary-1: var(--color-primary-1);
-  --color-primary-2: var(--color-primary-2);
-  --color-primary-3: var(--color-primary-3);
-  --color-primary-4: var(--color-primary-4);
-  --color-primary-5: var(--color-primary-5);
+  --color-primary-1: #7a2946;
+  --color-primary-2: #a4364f;
+  --color-primary-3: #d84a6e;
+  --color-primary-4: #e394a8;
+  --color-primary-5: #f0c8d0;
   
   /* Secondary palette */
-  --color-secondary-1: var(--color-secondary-1);
-  --color-secondary-2: var(--color-secondary-2);
-  --color-secondary-3: var(--color-secondary-3);
-  --color-secondary-4: var(--color-secondary-4);
-  --color-secondary-5: var(--color-secondary-5);
+  --color-secondary-1: #8b5a2b;
+  --color-secondary-2: #a67c52;
+  --color-secondary-3: #d49c5a;
+  --color-secondary-4: #e6c794;
+  --color-secondary-5: #f5e8d3;
+  --color-secondary-6: #fff8ed;
   
-  /* Legacy color names */
-  --color-primary-900: var(--color-primary-900);
-  --color-primary-800: var(--color-primary-800);
-  --color-primary-700: var(--color-primary-700);
-  --color-primary-600: var(--color-primary-600);
-  --color-primary-500: var(--color-primary-500);
+  /* Neutrals */
+  --color-neutral-1: #473E3E;
+  --color-neutral-2: #6E5E5E;
   
-  --color-secondary-900: var(--color-secondary-900);
-  --color-secondary-800: var(--color-secondary-800);
-  --color-secondary-700: var(--color-secondary-700);
-  --color-secondary-600: var(--color-secondary-600);
-  --color-secondary-500: var(--color-secondary-500);
-  
-  /* Neutral colors */
-  --color-neutral-100: var(--color-neutral-100);
-  --color-neutral-200: var(--color-neutral-200);
-  --color-neutral-300: var(--color-neutral-300);
-  --color-neutral-400: var(--color-neutral-400);
-  --color-neutral-500: var(--color-neutral-500);
-  --color-neutral-600: var(--color-neutral-600);
-  --color-neutral-700: var(--color-neutral-700);
-  --color-neutral-800: var(--color-neutral-800);
-  --color-neutral-900: var(--color-neutral-900);
+  /* Border radius */
+  --radius-xs: 5px;
+  --radius-sm: 10px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
 }

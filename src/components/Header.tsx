@@ -1,6 +1,7 @@
-import { Grid3X3, List } from 'lucide-react';
-import Tabs from '@/components/Tabs';
-import { ViewMode, Category, ViewModeTab, CategoryTab } from '@/types';
+import { Grid3X3, List } from "lucide-react";
+import Tabs from "@/components/Tabs";
+import { ViewMode, Category, ViewModeTab, CategoryTab } from "@/types";
+import "@/styles/Header.css";
 
 interface HeaderProps {
   activeCategory: Category;
@@ -16,21 +17,21 @@ export default function Header({
   onViewModeChange 
 }: HeaderProps) {
   const categoryTabs: CategoryTab[] = [
-    { id: 'all', label: 'All' },
-    { id: 'knitting', label: 'Knitting' },
-    { id: 'crochet', label: 'Crochet' }
+    { id: "all", label: "All" },
+    { id: "knitting", label: "Knitting" },
+    { id: "crochet", label: "Crochet" }
   ];
 
   const viewTabs: ViewModeTab[] = [
-    { id: 'grid', icon: <Grid3X3 className="w-5 h-5" /> },
-    { id: 'list', icon: <List className="w-5 h-5" /> }
+    { id: "grid", icon: <Grid3X3 className="icon-size" /> },
+    { id: "list", icon: <List className="icon-size" /> }
   ];
 
   return (
-    <div className="space-y-4 mb-6">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4">
+    <div className="header-container">
+      <div className="header-content">
         {/* Category tabs - centered on desktop */}
-        <div className="md:flex-1 md:flex md:justify-center">
+        <div className="category-section">
           <Tabs
             tabs={categoryTabs}
             activeTab={activeCategory}
@@ -41,7 +42,7 @@ export default function Header({
         </div>
         
         {/* View mode toggle - only visible on mobile */}
-        <div className="md:hidden">
+        <div className="view-section">
           <Tabs
             tabs={viewTabs}
             activeTab={viewMode}
