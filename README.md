@@ -1,11 +1,13 @@
 
-  # Craft Blog Website
+# Esther's craft log
 
-  This is a code bundle for Craft Blog Website. The original project is available at https://www.figma.com/design/hrqbgdnoFCZcawc7VWJlrl/Craft-Blog-Website.
+This is my personal craft log, where I keep a record of my yarn creations.
 
-  ## Running the code
+It was made to look somewhat similar to an Instagram profile page, with none of the extra social media noise; reminiscent of the older days, when the Internet was more about personal blogs and websites. I like to be in control of where my creations are hosted, and to not be dependent on any social media platform.
 
-  Run `npm i` to install the dependencies.
+## Running the code
 
-  Run `npm run dev` to start the development server.
+Run `npm i` to install the dependencies.
+
+Run `npm run dev` to start the development server.
   
