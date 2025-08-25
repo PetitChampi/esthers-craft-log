@@ -26,9 +26,9 @@ export default function Layout({ children }: LayoutProps) {
         <div className="layout-footer-content">
           <p className="layout-footer-text">
             Crafts & web design by{" "}
-            <span className="layout-footer-highlight">
+            <a href="https://cv.esbauz.me" target="_blank" className="layout-footer-link">
               Esther Haddon
-            </span>
+            </a>
           </p>
         </div>
       </footer>

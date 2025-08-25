@@ -1,4 +1,4 @@
-import { Grid3X3, List } from "lucide-react";
+import { Grid2X2, List } from "lucide-react";
 import Tabs from "@/components/Tabs";
 import { ViewMode, Category, ViewModeTab, CategoryTab } from "@/types";
 import "@/styles/Header.css";
@@ -23,21 +23,19 @@ export default function Header({
   ];
 
   const viewTabs: ViewModeTab[] = [
-    { id: "grid", icon: <Grid3X3 className="icon-size" /> },
+    { id: "grid", icon: <Grid2X2 className="icon-size" /> },
     { id: "list", icon: <List className="icon-size" /> }
   ];
 
   return (
     <div className="header-container">
       <div className="header-content">
-        {/* Category tabs - centered on desktop */}
         <div className="category-section">
           <Tabs
             tabs={categoryTabs}
             activeTab={activeCategory}
             onTabChange={onCategoryChange}
             variant="text"
-            centered={false} // Will be centered by parent on desktop
           />
         </div>
         
