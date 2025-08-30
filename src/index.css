@@ -12,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   color: var(--color-neutral-1);
-  background-color: var(--color-secondary-6);
+  background-color: var(--color-secondary-5);
   button {
     font-family: inherit;
     font-size: 1rem;

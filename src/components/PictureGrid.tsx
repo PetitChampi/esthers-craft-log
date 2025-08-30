@@ -1,6 +1,7 @@
 import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
 import { ViewMode, Category } from "@/types";
 import "@/styles/PictureGrid.css";
+import { useMediaQuery } from 'react-responsive';
 
 export interface CraftItem {
   id: string;
@@ -18,50 +19,75 @@ interface PictureGridProps {
 }
 
 export default function PictureGrid({ items, viewMode, onItemClick }: PictureGridProps) {
-  if (viewMode === "list") {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const columnCount = isMobile ? 3 : 6;
+  const totalItems = items.length;
+
+  if (viewMode === "list" && isMobile) {
     return (
-      <div className="picture-grid-list">
+      <div className="pic-list">
         {items.map((item) => (
           <div
             key={item.id}
             onClick={() => onItemClick(item)}
-            className="picture-grid-list-item"
+            className="pic-list-item"
           >
-            <div className="picture-grid-list-image">
-              <ImageWithFallback
-                src={item.imageUrl}
-                alt={item.title}
-                className=""
-              />
-            </div>
-            <div className="picture-grid-list-content">
-              <h3 className="picture-grid-list-title">{item.title}</h3>
-              <p className="picture-grid-list-description">{item.description}</p>
-              <span className="picture-grid-list-category">
-                {item.category}
-              </span>
-            </div>
+            <ImageWithFallback src={item.imageUrl} alt={item.title} />
           </div>
         ))}
       </div>
     );
   }
 
+  const numFullRows = Math.floor(totalItems / columnCount);
+
+  const fullGridItems = items.slice(0, numFullRows * columnCount);
+  const remainderItems = items.slice(numFullRows * columnCount);
+
   return (
-    <div className="picture-grid-container">
-      {items.map((item) => (
-        <div
-          key={item.id}
-          onClick={() => onItemClick(item)}
-          className="picture-grid-item"
-        >
-          <ImageWithFallback
-            src={item.imageUrl}
-            alt={item.title}
-            className=""
-          />
+    <div className="pic-grid-container">
+      {fullGridItems.length > 0 && (
+        <div className="pic-grid-full-rows" style={{
+          gridTemplateColumns: `repeat(${columnCount}, 1fr)`
+        }}>
+          {fullGridItems.map((item) => {
+
+            return (
+              <div
+                key={item.id}
+                onClick={() => onItemClick(item)}
+                className="pic-grid-item"
+              >
+                <ImageWithFallback src={item.imageUrl} alt={item.title} />
+              </div>
+            );
+          })}
         </div>
-      ))}
+      )}
+
+      {remainderItems.length > 0 && (
+        <div className="pic-grid-remainder-row" style={{
+          // Calculate item width to match grid items
+          '--item-width': `calc((100% - ${(columnCount - 1) * 2}px) / ${columnCount})`
+        } as React.CSSProperties}>
+          {remainderItems.map((item, index) => {
+            let itemClasses = [];
+
+            // Radiuses of first and last items in remainder row
+            if (index === 0) itemClasses.push("rounded-bl");
+            if (index === remainderItems.length - 1) itemClasses.push("rounded-br");
+            return (
+              <div
+                key={item.id}
+                onClick={() => onItemClick(item)}
+                className={`pic-grid-item remainder-item ${itemClasses.join(" ")}`}
+              >
+                <ImageWithFallback src={item.imageUrl} alt={item.title} className="" />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -163,5 +189,21 @@ export const mockCraftItems: CraftItem[] = [
     imageUrl: "https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     description: "Beautiful crochet flower appliqué",
     images: ["https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  }
+  },
+  {
+    id: "13",
+    title: "Knitted Sweater",
+    category: "knitting",
+    imageUrl: "https://images.unsplash.com/photo-1642853474532-9aca78f70629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwc3dlYXRlciUyMGNhcmRpZ2FufGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    description: "Classic cable knit sweater in cream wool",
+    images: ["https://images.unsplash.com/photo-1642853474532-9aca78f70629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwc3dlYXRlciUyMGNhcmRpZ2FufGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
+  },
+  {
+    id: "14",
+    title: "Crochet Flower",
+    category: "crochet",
+    imageUrl: "https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    description: "Beautiful crochet flower appliqué",
+    images: ["https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
+  },
 ];
