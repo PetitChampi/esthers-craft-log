@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
-import { CraftItem } from "@/components/PictureGrid";
+import { CraftItem } from "@/types";
 import "@/styles/Modal.css";
 
 interface ModalProps {
@@ -91,7 +91,7 @@ export default function Modal({
           <div className="modal-image-container">
             <div className="modal-image-wrapper">
               <ImageWithFallback
-                src={item.imageUrl}
+                src={item.images[0]}
                 alt={item.title}
                 className="modal-image"
               />
@@ -101,9 +101,6 @@ export default function Modal({
             <div className="modal-details">
               <h2 className="modal-title">{item.title}</h2>
               <p className="modal-description">{item.description}</p>
-              <span className="modal-category">
-                {item.category}
-              </span>
             </div>
           </div>
 

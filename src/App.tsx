@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react';
 import Layout from '@/components/Layout';
 import Header from '@/components/Header';
-import PictureGrid, { mockCraftItems, CraftItem } from '@/components/PictureGrid';
+import PictureGrid from '@/components/PictureGrid';
 import Modal from '@/components/Modal';
-import { ViewMode, Category } from '@/types';
+import { ViewMode, Category, CraftItem } from '@/types';
+import { craftItems } from '@/data/craftItems';
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<Category>('all');
@@ -11,12 +12,11 @@ export default function App() {
   const [selectedItem, setSelectedItem] = useState<CraftItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Filter items based on active category
   const filteredItems = useMemo(() => {
     if (activeCategory === 'all') {
-      return mockCraftItems;
+      return craftItems;
     }
-    return mockCraftItems.filter(item => item.category === activeCategory);
+    return craftItems.filter(item => item.category === activeCategory);
   }, [activeCategory]);
 
   const handleItemClick = (item: CraftItem) => {
@@ -39,7 +39,6 @@ export default function App() {
     if (currentIndex > 0) {
       setSelectedItem(filteredItems[currentIndex - 1]);
     } else {
-      // Loop to last item
       setSelectedItem(filteredItems[filteredItems.length - 1]);
     }
   };
@@ -49,7 +48,6 @@ export default function App() {
     if (currentIndex < filteredItems.length - 1) {
       setSelectedItem(filteredItems[currentIndex + 1]);
     } else {
-      // Loop to first item
       setSelectedItem(filteredItems[0]);
     }
   };

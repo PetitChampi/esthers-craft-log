@@ -24,8 +24,12 @@
     font-family: inherit;
     line-height: 1.4;
     color: var(--color-secondary-1);
+    @media (max-width: 768px) {
+      font-size: .875rem;
+      padding: 6px 12px;
+    }
     &:hover {
-      background-color: var(--color-secondary-5);
+      background-color: var(--color-secondary-4);
     }
     &.active {
       background-color: var(--color-primary-2);

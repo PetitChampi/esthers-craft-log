@@ -1,22 +1,7 @@
 import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
-import { ViewMode, Category } from "@/types";
+import { PictureGridProps } from "@/types";
+import { useMediaQuery } from "react-responsive";
 import "@/styles/PictureGrid.css";
-import { useMediaQuery } from 'react-responsive';
-
-export interface CraftItem {
-  id: string;
-  title: string;
-  category: Category;
-  imageUrl: string;
-  description: string;
-  images: string[];
-}
-
-interface PictureGridProps {
-  items: CraftItem[];
-  viewMode: ViewMode;
-  onItemClick: (item: CraftItem) => void;
-}
 
 export default function PictureGrid({ items, viewMode, onItemClick }: PictureGridProps) {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -32,7 +17,7 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
             onClick={() => onItemClick(item)}
             className="pic-list-item"
           >
-            <ImageWithFallback src={item.imageUrl} alt={item.title} />
+            <ImageWithFallback src={item.images[0]} alt={item.title} />
           </div>
         ))}
       </div>
@@ -58,7 +43,7 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
                 onClick={() => onItemClick(item)}
                 className="pic-grid-item"
               >
-                <ImageWithFallback src={item.imageUrl} alt={item.title} />
+                <ImageWithFallback src={item.images[0]} alt={item.title} />
               </div>
             );
           })}
@@ -68,7 +53,7 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
       {remainderItems.length > 0 && (
         <div className="pic-grid-remainder-row" style={{
           // Calculate item width to match grid items
-          '--item-width': `calc((100% - ${(columnCount - 1) * 2}px) / ${columnCount})`
+          "--item-width": `calc((100% - ${(columnCount - 1) * 2}px) / ${columnCount})`
         } as React.CSSProperties}>
           {remainderItems.map((item, index) => {
             let itemClasses = [];
@@ -82,7 +67,7 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
                 onClick={() => onItemClick(item)}
                 className={`pic-grid-item remainder-item ${itemClasses.join(" ")}`}
               >
-                <ImageWithFallback src={item.imageUrl} alt={item.title} className="" />
+                <ImageWithFallback src={item.images[0]} alt={item.title} className="" />
               </div>
             );
           })}
@@ -91,119 +76,3 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
     </div>
   );
 }
-
-// Mock data for craft items
-export const mockCraftItems: CraftItem[] = [
-  {
-    id: "1",
-    title: "Colorful Knitted Scarf",
-    category: "knitting",
-    imageUrl: "https://images.unsplash.com/photo-1706864685950-c7db14f24290?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGluZyUyMHdvb2wlMjB5YXJuJTIwY3JhZnRzfGVufDF8fHx8MTc1NTk0NjkyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "A vibrant striped scarf knitted with soft wool yarn",
-    images: ["https://images.unsplash.com/photo-1706864685950-c7db14f24290?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGluZyUyMHdvb2wlMjB5YXJuJTIwY3JhZnRzfGVufDF8fHx8MTc1NTk0NjkyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "2",
-    title: "Crochet Baby Blanket",
-    category: "crochet",
-    imageUrl: "https://images.unsplash.com/photo-1632649027900-389e810204e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwaGFuZG1hZGUlMjBjcmFmdHN8ZW58MXx8fHwxNzU1OTQ2OTI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Soft pastel baby blanket with intricate crochet patterns",
-    images: ["https://images.unsplash.com/photo-1632649027900-389e810204e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwaGFuZG1hZGUlMjBjcmFmdHN8ZW58MXx8fHwxNzU1OTQ2OTI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "3",
-    title: "Knitting Needles & Wool",
-    category: "knitting",
-    imageUrl: "https://images.unsplash.com/photo-1595301408991-ce3b59fd4cda?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGluZyUyMG5lZWRsZXMlMjB3b29sfGVufDF8fHx8MTc1NTk0NjkyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Natural wool yarn with wooden knitting needles",
-    images: ["https://images.unsplash.com/photo-1595301408991-ce3b59fd4cda?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGluZyUyMG5lZWRsZXMlMjB3b29sfGVufDF8fHx8MTc1NTk0NjkyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "4",
-    title: "Crochet Hooks & Yarn",
-    category: "crochet",
-    imageUrl: "https://images.unsplash.com/photo-1627562625493-beb6008e3346?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwaG9va3MlMjB5YXJufGVufDF8fHx8MTc1NTk0NjkyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Colorful yarn balls with crochet hooks ready for crafting",
-    images: ["https://images.unsplash.com/photo-1627562625493-beb6008e3346?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwaG9va3MlMjB5YXJufGVufDF8fHx8MTc1NTk0NjkyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "5",
-    title: "Handmade Knitted Scarf",
-    category: "knitting",
-    imageUrl: "https://images.unsplash.com/photo-1609803384069-19f3e5a70e75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYW5kbWFkZSUyMGtuaXR0ZWQlMjBzY2FyZnxlbnwxfHx8fDE3NTU5NDY5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Cozy knitted scarf with cable pattern",
-    images: ["https://images.unsplash.com/photo-1609803384069-19f3e5a70e75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYW5kbWFkZSUyMGtuaXR0ZWQlMjBzY2FyZnxlbnwxfHx8fDE3NTU5NDY5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "6",
-    title: "Crochet Blanket",
-    category: "crochet",
-    imageUrl: "https://images.unsplash.com/photo-1675269605939-71cbac0e80b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwYmxhbmtldCUyMGhhbmRtYWRlfGVufDF8fHx8MTc1NTk0NjkyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Multicolor granny square blanket",
-    images: ["https://images.unsplash.com/photo-1675269605939-71cbac0e80b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwYmxhbmtldCUyMGhhbmRtYWRlfGVufDF8fHx8MTc1NTk0NjkyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "7",
-    title: "Knitted Beanie Hat",
-    category: "knitting",
-    imageUrl: "https://images.unsplash.com/photo-1722322498026-ad9456b937d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGluZyUyMGhhdCUyMGJlYW5pZSUyMGhhbmRtYWRlfGVufDF8fHx8MTc1NTk0NjkzMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Warm winter beanie with ribbed pattern",
-    images: ["https://images.unsplash.com/photo-1722322498026-ad9456b937d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGluZyUyMGhhdCUyMGJlYW5pZSUyMGhhbmRtYWRlfGVufDF8fHx8MTc1NTk0NjkzMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "8",
-    title: "Crochet Amigurumi Toy",
-    category: "crochet",
-    imageUrl: "https://images.unsplash.com/photo-1723719121605-5623e3a4f538?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwYW1pZ3VydW1pJTIwdG95fGVufDF8fHx8MTc1NTk0NjkzMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Cute amigurumi toy with detailed stitching",
-    images: ["https://images.unsplash.com/photo-1723719121605-5623e3a4f538?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwYW1pZ3VydW1pJTIwdG95fGVufDF8fHx8MTc1NTk0NjkzMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "9",
-    title: "Knitted Mittens",
-    category: "knitting",
-    imageUrl: "https://images.unsplash.com/photo-1579422539802-dc771d0f5636?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwbWl0dGVucyUyMGdsb3Zlc3xlbnwxfHx8fDE3NTU5NDY5MzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Cozy winter mittens with fair isle pattern",
-    images: ["https://images.unsplash.com/photo-1579422539802-dc771d0f5636?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwbWl0dGVucyUyMGdsb3Zlc3xlbnwxfHx8fDE3NTU5NDY5MzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "10",
-    title: "Crochet Doily",
-    category: "crochet",
-    imageUrl: "https://images.unsplash.com/photo-1597954424044-cef1e74a89ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZG9pbHklMjBsYWNlfGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Delicate lace doily with intricate patterns",
-    images: ["https://images.unsplash.com/photo-1597954424044-cef1e74a89ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZG9pbHklMjBsYWNlfGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "11",
-    title: "Knitted Sweater",
-    category: "knitting",
-    imageUrl: "https://images.unsplash.com/photo-1642853474532-9aca78f70629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwc3dlYXRlciUyMGNhcmRpZ2FufGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Classic cable knit sweater in cream wool",
-    images: ["https://images.unsplash.com/photo-1642853474532-9aca78f70629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwc3dlYXRlciUyMGNhcmRpZ2FufGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "12",
-    title: "Crochet Flower",
-    category: "crochet",
-    imageUrl: "https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Beautiful crochet flower appliqué",
-    images: ["https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "13",
-    title: "Knitted Sweater",
-    category: "knitting",
-    imageUrl: "https://images.unsplash.com/photo-1642853474532-9aca78f70629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwc3dlYXRlciUyMGNhcmRpZ2FufGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Classic cable knit sweater in cream wool",
-    images: ["https://images.unsplash.com/photo-1642853474532-9aca78f70629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrbml0dGVkJTIwc3dlYXRlciUyMGNhcmRpZ2FufGVufDF8fHx8MTc1NTk0NjkzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-  {
-    id: "14",
-    title: "Crochet Flower",
-    category: "crochet",
-    imageUrl: "https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    description: "Beautiful crochet flower appliqué",
-    images: ["https://images.unsplash.com/photo-1595301490405-0ae747be39f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm9jaGV0JTIwZmxvd2VyJTIwcGF0dGVybnxlbnwxfHx8fDE3NTU5NDY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"]
-  },
-];

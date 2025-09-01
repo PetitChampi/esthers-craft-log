@@ -132,14 +132,3 @@
   color: #d1d5db;
   margin-bottom: 0.75rem;
 }
-
-.modal-category {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background-color: var(--color-primary-2);
-  color: white;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-transform: capitalize;
-}

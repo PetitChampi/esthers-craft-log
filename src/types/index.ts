@@ -1,10 +1,7 @@
-// View mode types
 export type ViewMode = "grid" | "list";
 
-// Category types
 export type Category = "all" | "knitting" | "crochet";
 
-// Tab types
 export interface TabItem<T extends string = string> {
   id: T;
   label?: string;
@@ -14,3 +11,17 @@ export interface TabItem<T extends string = string> {
 
 export type ViewModeTab = TabItem<ViewMode>;
 export type CategoryTab = TabItem<Category>;
+
+export interface CraftItem {
+  id: string;
+  title: string;
+  category: Category;
+  description: string;
+  images: string[];
+}
+
+export interface PictureGridProps {
+  items: CraftItem[];
+  viewMode: ViewMode;
+  onItemClick: (item: CraftItem) => void;
+}
