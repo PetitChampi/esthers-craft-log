@@ -108,6 +108,13 @@ const craftItemData: CraftItem[] = [
     images: [`${imgUrlBase}jolteon-ami-1.jpg`, `${imgUrlBase}jolteon-ami-2.jpg`],
     description: "My first Pokémon amigurumi, of my favourite Gen 1 Pokémon. I hooked it to my already colourflul work backpack.",
   },
+  {
+    id: "16",
+    title: "Square baskets",
+    category: "crochet",
+    images: [`${imgUrlBase}square-baskets.jpg`],
+    description: "I crocheted a couple of baskets for the small items sitting on shelves that may not have a storage place yet.",
+  },
 ];
 
 export const craftItems = craftItemData.reverse();
