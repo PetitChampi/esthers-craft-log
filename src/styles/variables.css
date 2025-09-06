@@ -16,13 +16,22 @@
   
   /* Neutrals */
   --color-neutral-1: #473E3E;
+  --color-neutral-1-rgb: 71, 62, 62;
   --color-neutral-2: #6E5E5E;
+  --color-neutral-5: #DED4D4;
+
+  /* Shadows */
+  --shadow-md: 0 4px 16px -4px rgba(var(--color-neutral-1-rgb), 0.32), 0 1px 6px -2px rgba(var(--color-neutral-1-rgb), 0.2);
   
   /* Border radius */
   --radius-xs: 5px;
   --radius-sm: 10px;
   --radius-md: 15px;
   --radius-lg: 20px;
+  --radius-max: 1000px;
+
+  /* widths */
+  --width-container: 1210px;
 
   /* Breakpoints */
   --breakpoint-tab: 768px;

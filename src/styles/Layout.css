@@ -22,7 +22,7 @@
   .layout-main {
     flex: 1;
     .layout-main-content {
-      max-width: 1210px;
+      max-width: var(--width-container);
       margin: 0 auto;
     }
   }

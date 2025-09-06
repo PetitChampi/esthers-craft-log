@@ -26,7 +26,9 @@ export default function App() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedItem(null);
+    setTimeout(() => {
+      setSelectedItem(null);
+    }, 200); // Match CSS transition
   };
 
   const getCurrentItemIndex = () => {
