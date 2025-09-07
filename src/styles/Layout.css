@@ -13,9 +13,18 @@
     .layout-header-content {
       margin: 0 auto;
       .layout-title {
-        color: var(--color-neutral-1);
-        text-align: center;
-        font-weight: 600;
+        color: var(--color-secondary-1);
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.75rem;
+        letter-spacing: -1px;
+        img {
+          height: 40px;
+          width: 40px;
+        }
       }
     }
   }

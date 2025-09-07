@@ -11,6 +11,7 @@ export default function Layout({ children }: LayoutProps) {
       <header className="layout-header">
         <div className="layout-header-content">
           <h1 className="layout-title">
+            <img className="logo" src="./yarnball.svg" alt="Yarn ball logo" />
             Esther's craft log
           </h1>
         </div>
