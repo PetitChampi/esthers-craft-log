@@ -35,4 +35,5 @@
 
   /* Breakpoints */
   --breakpoint-tab: 768px;
+  --breakpoint-mob: 550px;
 }
