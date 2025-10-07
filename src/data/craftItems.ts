@@ -85,7 +85,7 @@ const craftItemData: CraftItem[] = [
     title: "Flower bouquet coasters",
     category: "crochet",
     images: [`${imgUrlBase}bouquet-coasters-1.jpg`, `${imgUrlBase}bouquet-coasters-2.jpg`],
-    description: "These coasters fold into a bouquet, which I think is super cool. I barely use them as coasters, I mostly just display them as a bouquet on a living room shelf, and showcase their shapeshifting ability to guest as a party trick.",
+    description: "These coasters fold into a bouquet, which is super cool. I barely use them as coasters, I mostly just display them as a bouquet on a living room shelf, and showcase their shapeshifting ability to guests as a party trick.",
   },
   {
     id: "13",
