@@ -1,6 +1,7 @@
-import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
+import { ImageLoader } from "@/components/ImageLoader";
 import { PictureGridProps } from "@/types";
 import { useMediaQuery } from "react-responsive";
+import { getThumbnailPath } from "@/utils/imageUtils";
 import "@/styles/PictureGrid.css";
 
 export default function PictureGrid({ items, viewMode, onItemClick }: PictureGridProps) {
@@ -17,7 +18,12 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
             onClick={() => onItemClick(item)}
             className="pic-list-item"
           >
-            <ImageWithFallback src={item.images[0]} alt={item.title} />
+            <ImageLoader 
+              src={item.images[0]} 
+              alt={item.title}
+              thumbnailSrc={getThumbnailPath(item.images[0])}
+              priority
+            />
           </div>
         ))}
       </div>
@@ -43,7 +49,12 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
                 onClick={() => onItemClick(item)}
                 className="pic-grid-item"
               >
-                <ImageWithFallback src={item.images[0]} alt={item.title} />
+                <ImageLoader 
+                  src={item.images[0]} 
+                  alt={item.title}
+                  thumbnailSrc={getThumbnailPath(item.images[0])}
+                  priority
+                />
               </div>
             );
           })}
@@ -67,7 +78,12 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
                 onClick={() => onItemClick(item)}
                 className={`pic-grid-item remainder-item ${itemClasses.join(" ")}`}
               >
-                <ImageWithFallback src={item.images[0]} alt={item.title} className="" />
+                <ImageLoader 
+                  src={item.images[0]} 
+                  alt={item.title}
+                  thumbnailSrc={getThumbnailPath(item.images[0])}
+                  priority
+                />
               </div>
             );
           })}

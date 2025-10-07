@@ -18,6 +18,7 @@ export interface CraftItem {
   category: Category;
   description: string;
   images: string[];
+  thumbnails?: string[];
 }
 
 export interface PictureGridProps {

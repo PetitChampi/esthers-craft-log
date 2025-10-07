@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
+import { ImageLoader } from "@/components/ImageLoader";
 import { CraftItem } from "@/types";
+import { getThumbnailPath } from "@/utils/imageUtils";
 import "@/styles/Modal.css";
 
 interface ModalProps {
@@ -111,10 +112,11 @@ export default function Modal({
           {/* Image container */}
           <div className="modal-image-container">
             {item.images.map((src, index) => (
-              <div className="modal-image-wrapper" key={index}>
-                <ImageWithFallback
+              <div className="modal-image-wrapper" key={`${item.id}-${index}`}>
+                <ImageLoader
                   src={src}
-                  alt={item.title}
+                  alt={`${item.title} - Image ${index + 1}`}
+                  thumbnailSrc={getThumbnailPath(src)}
                   className="modal-image"
                 />
               </div>
