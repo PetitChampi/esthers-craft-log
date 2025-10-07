@@ -11,7 +11,6 @@
   background-color: rgba(var(--color-neutral-1-rgb), 0);
   padding: 55px 90px 30px;
   transition: background-color 0.3s ease;
-  
   &.modal-open {
     background-color: rgba(var(--color-neutral-1-rgb), .5);
   }
@@ -36,7 +35,7 @@
     flex-direction: column;
     transform: scale(0.95) translateY(20px);
     opacity: 0;
-    transition: transform .2s ease, opacity .2s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     .modal-close-button {
       position: absolute;
       right: 20px;

@@ -26,22 +26,26 @@ export default function Modal({
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Handle modal visibility and animation states
+  // Visibility and animation states
   useEffect(() => {
     if (isOpen && item) {
+      // First make the modal visible in the DOM
       setIsVisible(true);
-      const timer = setTimeout(() => {
-        setIsAnimating(true);
-      }, 10);
-      return () => clearTimeout(timer);
-    } else if (!isOpen && isVisible) {
+      // Making sure the browser has painted the initial state before animating
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsAnimating(true);
+        });
+      });
+    } else if (!isOpen) {
       setIsAnimating(false);
+      // Wait for animation to complete before removing from DOM
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 200); // Match CSS transition
+      }, 300); // Match CSS transition duration
       return () => clearTimeout(timer);
     }
-  }, [isOpen, item, isVisible]);
+  }, [isOpen, item]);
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
@@ -90,7 +94,7 @@ export default function Modal({
           <X className="modal-close-icon" />
         </button>
 
-        {/* Previous button */}
+        {/* Prev + next buttons */}
         <button
           onClick={onPrevious}
           className="modal-nav-button previous"
@@ -98,8 +102,6 @@ export default function Modal({
         >
           <ChevronLeft className="modal-nav-icon" />
         </button>
-
-        {/* Next button */}
         <button
           onClick={onNext}
           className="modal-nav-button next"
