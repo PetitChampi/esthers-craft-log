@@ -15,11 +15,17 @@ interface ModalProps {
   totalItems: number;
 }
 
-export default function Modal({ 
-  isOpen, 
-  onClose, 
-  item, 
-  onPrevious, 
+const formatFinishDate = (date: string) => {
+  const [year, month] = date.split("-");
+  const monthName = new Date(Number(year), Number(month) - 1).toLocaleString("en-US", { month: "long" });
+  return `${monthName} ${year}`;
+};
+
+export default function Modal({
+  isOpen,
+  onClose,
+  item,
+  onPrevious,
   onNext,
   totalItems
 }: ModalProps) {
@@ -127,7 +133,8 @@ export default function Modal({
           {/* Item details */}
           <div className="modal-details">
             <h2 className="modal-title">{item.title}</h2>
-            <p className="modal-description">{item.description}</p>
+            <p className="date-finished">Finished in {formatFinishDate(item.dateFinished)}</p>
+            <p className="modal-description" dangerouslySetInnerHTML={{ __html: item.description }} />
           </div>
         </div>
       </div>

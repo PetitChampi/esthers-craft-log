@@ -19,6 +19,7 @@ export interface CraftItem {
   description: string;
   images: string[];
   thumbnails?: string[];
+  dateFinished: string;
 }
 
 export interface PictureGridProps {

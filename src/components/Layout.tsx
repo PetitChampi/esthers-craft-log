@@ -26,9 +26,13 @@ export default function Layout({ children }: LayoutProps) {
       <footer className="layout-footer">
         <div className="layout-footer-content">
           <p className="layout-footer-text">
-            Crafts & web design by{" "}
+            Crafts & web design by Esther Haddon <br />
             <a href="https://cv.esbauz.me" target="_blank" className="layout-footer-link">
-              Esther Haddon
+              software engineer CV
+            </a>
+            &nbsp;&bull;&nbsp;
+            <a href="https://www.ravelry.com/patterns/sources/esther-haddons-ravelry-store" target="_blank" className="layout-footer-link">
+              Ravelry store
             </a>
           </p>
         </div>

@@ -137,12 +137,28 @@
         .modal-title {
           font-size: 1.75rem;
           font-weight: 600;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
+        }
+        .date-finished {
+          color: var(--color-secondary-2);
+          font-weight: 500;
+          font-size: .875rem;
+          margin-bottom: 15px;
         }
         .modal-description {
           color: var(--color-neutral-2);
           font-size: 1.125rem;
-          margin-bottom: 10px;
+          margin-bottom: 15px;
+          a {
+            color: var(--color-primary-3);
+            font-weight: 500;
+            /* text-decoration: underline; */
+            text-underline-offset: 5px;
+            transition: color .2s;
+            &:hover {
+              color: var(--color-primary-2);
+            }
+          }
         }
       }
     }
