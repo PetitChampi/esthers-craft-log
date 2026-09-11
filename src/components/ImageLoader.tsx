@@ -6,6 +6,7 @@ interface ImageLoaderProps {
   alt: string;
   className?: string;
   thumbnailSrc?: string;
+  fallbackSrc?: string;
   onLoad?: () => void;
   priority?: boolean;
 }
@@ -15,12 +16,18 @@ export function ImageLoader({
   alt,
   className = "",
   thumbnailSrc,
+  fallbackSrc,
   onLoad,
   priority = false
 }: ImageLoaderProps) {
+  const [activeSrc, setActiveSrc] = useState(src);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setActiveSrc(src);
+  }, [src]);
 
   useEffect(() => {
     // Reset states when src changes
@@ -30,8 +37,8 @@ export function ImageLoader({
 
     // Preload full image
     const img = new Image();
-    img.src = src;
-    
+    img.src = activeSrc;
+
     if (priority) {
       img.loading = "eager";
     }
@@ -42,7 +49,11 @@ export function ImageLoader({
     };
 
     img.onerror = () => {
-      setError(true);
+      if (fallbackSrc && activeSrc !== fallbackSrc) {
+        setActiveSrc(fallbackSrc);
+      } else {
+        setError(true);
+      }
     };
 
     // Preload thumbnail if provided
@@ -56,7 +67,7 @@ export function ImageLoader({
       img.onload = null;
       img.onerror = null;
     };
-  }, [src, thumbnailSrc, onLoad, priority]);
+  }, [activeSrc, thumbnailSrc, onLoad, priority, fallbackSrc]);
 
   if (error) {
     return (
@@ -85,7 +96,7 @@ export function ImageLoader({
       
       {/* Full resolution image */}
       <img
-        src={src}
+        src={activeSrc}
         alt={alt}
         className={`image-loader-full ${imageLoaded ? "loaded" : ""}`}
       />

@@ -18,8 +18,8 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
             onClick={() => onItemClick(item)}
             className="pic-list-item"
           >
-            <ImageLoader 
-              src={item.images[0]} 
+            <ImageLoader
+              src={item.images[0]}
               alt={item.title}
               thumbnailSrc={getThumbnailPath(item.images[0])}
               priority
@@ -49,10 +49,10 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
                 onClick={() => onItemClick(item)}
                 className="pic-grid-item"
               >
-                <ImageLoader 
-                  src={item.images[0]} 
+                <ImageLoader
+                  src={getThumbnailPath(item.images[0])}
                   alt={item.title}
-                  thumbnailSrc={getThumbnailPath(item.images[0])}
+                  fallbackSrc={item.images[0]}
                   priority
                 />
               </div>
@@ -78,10 +78,10 @@ export default function PictureGrid({ items, viewMode, onItemClick }: PictureGri
                 onClick={() => onItemClick(item)}
                 className={`pic-grid-item remainder-item ${itemClasses.join(" ")}`}
               >
-                <ImageLoader 
-                  src={item.images[0]} 
+                <ImageLoader
+                  src={getThumbnailPath(item.images[0])}
                   alt={item.title}
-                  thumbnailSrc={getThumbnailPath(item.images[0])}
+                  fallbackSrc={item.images[0]}
                   priority
                 />
               </div>

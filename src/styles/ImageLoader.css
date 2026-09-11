@@ -13,7 +13,6 @@
   &.modal-image {
     width: auto;
     height: auto;
-    overflow: visible;
     background-color: transparent;
     .image-loader-thumbnail,
     .image-loader-full {
@@ -37,6 +36,11 @@
     opacity: 0;
     transition: opacity 0.4s ease-out;
     z-index: 1;
+    &:not(.loaded) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
     &.loaded {
       opacity: 1;
     }

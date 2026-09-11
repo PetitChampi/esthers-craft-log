@@ -122,19 +122,26 @@ const craftItemData: Omit<CraftItem, "id">[] = [
     description: "I crocheted a couple of baskets for the small items sitting on shelves that may not have a storage place yet.",
     dateFinished: "2025-09",
   },
-  // {
-  //   title: "Tipiou the bird and Spectro the ghost",
-  //   category: "crochet",
-  //   images: [`${imgUrlBase}tipiou-spectro-1.jpg`, `${imgUrlBase}tipiou-spectro-2.jpg`],
-  //   description: "This was a custom order from a friend's mum, for my friend's birthday surprise. She had just completed her graphic design training, and she created the characters as part of her final project. I crocheted them based on the designs she gave me, and they turned out pretty cute if I do say so myself!",
-  //   dateFinished: "2026-03",
-  // },
+  {
+    title: "Tipiou the bird and Spectro the ghost",
+    category: "crochet",
+    images: [`${imgUrlBase}tipiou-spectro-1.jpg`, `${imgUrlBase}tipiou-spectro-2.jpg`],
+    description: "This was a custom order from a friend's mum, for my friend's birthday surprise. She had just completed her graphic design training, and she created the characters as part of her final project. I crocheted them based on the designs she gave me, and they turned out pretty cute if I do say so myself!",
+    dateFinished: "2026-03",
+  },
   {
     title: "Autumn Twist chilly weather set",
     category: "knitting",
     images: [`${imgUrlBase}at-banner.jpg`, `${imgUrlBase}at-cowl.jpg`, `${imgUrlBase}at-beanie.jpg`, `${imgUrlBase}at-mittens.jpg`],
     description: `This is my very first published pattern! I wanted to design a whole set of winter accessories with a cohesive look, that I could pack in my winter coat pockets. I'm pretty proud of it! You can <a href="https://www.ravelry.com/patterns/library/autumn-twist-chilly-weather-set" target="_blank">check it out on Ravelry</a>.`,
     dateFinished: "2026-05",
+  },
+  {
+    title: "A pair of Sophie Scarves",
+    category: "knitting",
+    images: [`${imgUrlBase}sophie-scarves-1.jpg`, `${imgUrlBase}sophie-scarves-2.jpg`],
+    description: `This is my rendition of the very popular <a href="https://www.petiteknit.com/en/products/sophie-scarf" target="_blank">Sophie Scarf by Petite Knit</a>. The yellow colour was picked to look like a croissant when folded. The mauve one I knitted to wear at a friend's party; the dress code was pink and pastel colours, and I didn't really have any pink or mauve in my wardrobe.`,
+    dateFinished: "2026-09",
   },
 ];
 

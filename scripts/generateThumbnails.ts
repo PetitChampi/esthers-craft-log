@@ -25,8 +25,8 @@ async function generateThumbnail(imagePath: string, filename: string): Promise<b
   try {
     await sharp(imagePath)
       .resize(THUMBNAIL_SIZE, THUMBNAIL_SIZE, {
-        fit: "cover",
-        position: "center"
+        fit: "outside",
+        withoutEnlargement: true
       })
       .jpeg({ quality: 85, progressive: true })
       .toFile(outputPath);
